@@ -49,7 +49,7 @@ namespace TextCrypter
             // 選択された宛先を削除
             foreach (string owner in lstKey.SelectedItems)
             {
-                new KeyFileAccessor(owner).DeleteMyKey(true);
+                new KeyFileAccessor(owner).DeleteMyKey();
             }
 
             LoadWindow();
