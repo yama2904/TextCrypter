@@ -1,0 +1,26 @@
+﻿<Controls:MetroWindow x:Name="Window" x:Class="TextCrypter.EncryptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextCrypter"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="テキスト送信" Height="371" Width="630" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="btnBack" Content="←" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="47" Click="btnBack_Click"/>
+
+        <TextBlock x:Name="txtInputDescription" Text="送信したい内容を入力してください。" HorizontalAlignment="Center" Margin="126,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Red" FontSize="14" Width="504" FontWeight="Bold"/>
+        <TextBlock x:Name="txtInputLabel" Text="送信内容" HorizontalAlignment="Center" Margin="-435,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtInput" HorizontalAlignment="Center" Margin="0,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="378" Height="60" TextChanged="txtInput_TextChanged"/>
+        <Button x:Name="btnInputNext" Content="次へ" HorizontalAlignment="Center" Margin="435,106,0,0" VerticalAlignment="Top" Width="46" Click="btnInputNext_Click"/>
+
+        <TextBlock x:Name="txtKeyDescription" Text="送信先を選択してください。" HorizontalAlignment="Center" Margin="126,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Red" FontSize="14" Width="504" FontWeight="Bold"/>
+        <TextBlock x:Name="txtKeyLabel" Text="送信先" HorizontalAlignment="Center" Margin="-425,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbKey" HorizontalAlignment="Center" Margin="-240,173,0,0" VerticalAlignment="Top" Width="136" SelectionChanged="cmbKey_SelectionChanged"/>
+        <Button x:Name="btnKeyNext" Content="次へ" HorizontalAlignment="Center" Margin="-45,173,0,0" VerticalAlignment="Top" Width="46" Click="btnKeyNext_Click"/>
+
+        <TextBlock x:Name="txtOkDescription" Text="実行を押下し、暗号ファイルを保存してください。" Margin="0,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Red" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <Button x:Name="btnEncrypt" Content="実行" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Height="55" Width="130" FontSize="16" Click="btnEncrypt_Click"/>
+    </Grid>
+</Controls:MetroWindow>
