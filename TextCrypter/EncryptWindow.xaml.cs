@@ -82,7 +82,7 @@ namespace TextCrypter
                     return;
                 }
 
-                string text = RSACrypter.Encrypt(new KeyFileAccessor(cmbKey.SelectedItem.ToString()).ReadMyPublicKey(), txtInput.Text);
+                string text = RSACrypter.Encrypt(new KeyFileAccessor(cmbKey.SelectedItem.ToString()).ReadMyKey(KeyFileAccessor.KeyType.Public), txtInput.Text);
                 File.WriteAllText(saveDialog.FileName, text, AppConfigData.ReadConfig().EncryptFileEncoding);
                 MessageBox.Show("暗号ファイルの保存が完了しました。\nOKボタンを押下後、保存した暗号ファイルをLINE等のメッセージで相手に送付してください。", "確認", MessageBoxButton.OK);
 

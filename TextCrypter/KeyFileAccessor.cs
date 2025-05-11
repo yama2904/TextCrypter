@@ -11,6 +11,12 @@ namespace TextCrypter
     /// </summary>
     public class KeyFileAccessor
     {
+        public enum KeyType
+        {
+            Public,
+            Private
+        }
+
         /// <summary>
         /// 鍵の所有者
         /// </summary>
@@ -51,25 +57,31 @@ namespace TextCrypter
         /// 既に自分の鍵が存在するかチェック
         /// </summary>
         /// <returns>存在する場合はtrue</returns>
-        public bool ExistsMyKey()
+        public bool ExistsMyKey(KeyType key)
         {
-            return ExistsFiles(PublicKeyFile, PrivateKeyFile);
+            if (key == KeyType.Public)
+            {
+                return File.Exists(PublicKeyFile);
+            }
+            else
+            {
+                return File.Exists(PrivateKeyFile);
+            }
         }
 
         /// <summary>
-        /// 自分の公開鍵を読み込む
+        /// 自分の鍵を読み込む
         /// </summary>
-        public string ReadMyPublicKey()
+        public string ReadMyKey(KeyType key)
         {
-            return File.ReadAllText(PublicKeyFile, _config.PublicKeyEncoding);
-        }
-
-        /// <summary>
-        /// 自分の秘密鍵を読み込む
-        /// </summary>
-        public string ReadMyPrivateKey()
-        {
-            return File.ReadAllText(PrivateKeyFile, _config.PrivateKeyEncoding);
+            if (key == KeyType.Public)
+            {
+                return File.ReadAllText(PublicKeyFile, _config.PublicKeyEncoding);
+            }
+            else
+            {
+                return File.ReadAllText(PrivateKeyFile, _config.PrivateKeyEncoding);
+            }
         }
 
         /// <summary>
@@ -77,9 +89,9 @@ namespace TextCrypter
         /// </summary>
         public void GenerateMyKey()
         {
-            // 公開鍵更新
             using (var rsa = new RSACryptoServiceProvider(_config.KeySize))
             {
+                // 公開鍵更新
                 string publicKey = rsa.ToXmlString(false);
                 WriteKeyFile(publicKey, PublicKeyFile, _config.PublicKeyEncoding);
 
@@ -197,18 +209,6 @@ namespace TextCrypter
 
             // 公開鍵ファイルコピー
             File.Copy(publicKeyFile, copyTo, true);
-        }
-
-        /// <summary>
-        /// 指定されたファイルのいずれかが存在するか
-        /// </summary>
-        private bool ExistsFiles(params string[] files)
-        {
-            foreach (string file in files)
-            {
-                if (File.Exists(file)) return true;
-            }
-            return false;
         }
 
         /// <summary>

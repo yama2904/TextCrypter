@@ -19,7 +19,18 @@ namespace TextCrypter
 
         private void btnDecrypt_Click(object sender, RoutedEventArgs e)
         {
-            new DecryptWindow().ShowDialog();
+            if (new KeyFileAccessor(string.Empty).ExistsMyKey(KeyFileAccessor.KeyType.Private))
+            {
+                new DecryptWindow().ShowDialog();
+            }
+            else
+            {
+                var result = MessageBox.Show("初期セットアップが完了していないため本機能は利用できません。\n初期セットアップを行いますか？", "エラー", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    new GenerateKeyWindow().ShowDialog();
+                }
+            }
         }
 
         private void btnKeyList_Click(object sender, RoutedEventArgs e)

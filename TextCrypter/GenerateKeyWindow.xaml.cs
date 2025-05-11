@@ -29,8 +29,8 @@ namespace TextCrypter
             // 鍵ファイルアクセサ初期化
             var keyAccessor = new KeyFileAccessor(txtName.Text.Trim());
 
-            // 鍵ファイル存在チェック
-            if (keyAccessor.ExistsMyKey())
+            // 秘密鍵存在チェック
+            if (keyAccessor.ExistsMyKey(KeyFileAccessor.KeyType.Private))
             {
                 var messageResult = MessageBox.Show("既に初期セットアップ済みです。上書きしてもよろしいですか？", "確認", MessageBoxButton.YesNo);
                 if (messageResult != MessageBoxResult.Yes)
