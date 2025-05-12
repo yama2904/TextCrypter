@@ -43,7 +43,7 @@ namespace TextCrypter
             keyAccessor.GenerateMyKey();
 
             // 生成完了
-            MessageBox.Show("初期セットアップが完了しました。\nOKボタンを押下後、表示されたファイルをLINE等のメッセージで相手に送付してください。", "確認", MessageBoxButton.OK);
+            MessageBox.Show("初期セットアップが完了しました。\nOKボタンを押下後、表示されたファイルをLINE等で相手に送付し、宛先一覧に追加させてください。", "確認", MessageBoxButton.OK);
 
             // エクスプローラーで公開鍵保存先を開く
             System.Diagnostics.Process.Start("explorer.exe", $"/select,\"{keyAccessor.PublicKeyFile}\"");
